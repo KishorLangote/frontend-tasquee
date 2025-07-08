@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,6 +27,7 @@ const Login = () => {
       
       toast.success(data.message || "User logged in successfully!");
       localStorage.setItem("jwt", data.token);
+      onLogin()
       navigate("/");
       setEmail("");
       setPassword("");
